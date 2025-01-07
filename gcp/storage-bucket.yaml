@@ -1,0 +1,9 @@
+resources:
+  - name: halal-logistics-storage
+    type: storage.v1.bucket
+    properties:
+      location: US
+      storageClass: STANDARD
+      labels:
+        compliance: halal_certified
+        purpose: halal_logistics
