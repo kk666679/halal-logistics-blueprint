@@ -1,0 +1,27 @@
+
+resources:
+- name: cloud-run-service
+  type: gcp-types/run-v1:services
+  properties:
+    location: us-central1
+    template:
+      spec:
+        containers:
+        - image: gcr.io/project-id/sample-app
+          resources:
+            limits:
+              memory: "512Mi"
+
+- name: bigquery-dataset
+  type: bigquery.v2.dataset
+  properties:
+    datasetReference:
+      datasetId: halal_logistics_data
+    location: US
+
+- name: vertex-ai-instance
+  type: gcp-types/aiplatform-v1:projects.locations.models
+  properties:
+    parent: projects/project-id/locations/us-central1
+    modelId: vertex-ai-model
+    displayName: HalalLogisticsModel
