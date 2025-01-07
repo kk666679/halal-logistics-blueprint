@@ -1,0 +1,45 @@
+graph TD
+  %% Frontend Layer
+  A[Frontend Layer] -->|REST APIs| B[Backend Services]
+  A --> F[Authentication Service]
+
+  %% Backend Layer
+  B --> G[Compliance Service]
+  B --> H[Vendor Services]
+  B --> I[Admin Services]
+  B --> J[Messaging Queue]
+
+  %% Blockchain Layer
+  G --> K{Blockchain Layer}
+  K --> K1[Smart Contracts]
+  K --> K2[Distributed Ledger]
+  K --> K3[Tokenization]
+
+  %% Database Layer
+  B --> L[(Relational Database)]
+  L -->|Stores| M[User Profiles]
+  L -->|Stores| N[Product Listings]
+  L -->|Stores| O[Order History]
+
+  %% Payment and Integrations
+  F --> P[Payment Gateway]
+  P -->|Supports| Q[Fiat Transactions]
+  P -->|Supports| R[Crypto Payments]
+
+  %% External Services
+  B --> S[Shipping APIs]
+  B --> T[Halal Certification APIs]
+  B --> U[Bank Integrations]
+  
+  %% Infrastructure
+  subgraph Cloud Infrastructure
+    V[Load Balancer]
+    W[Application Servers]
+    X[Blockchain Nodes]
+    Y[Storage Buckets]
+  end
+  
+  B --> V
+  V --> W
+  W -->|Interacts| X
+  L --> Y
