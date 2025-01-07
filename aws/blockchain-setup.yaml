@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Blockchain Network for Halal Logistics Traceability
+
+Resources:
+  BlockchainNetwork:
+    Type: AWS::ManagedBlockchain::Network
+    Properties:
+      Framework: HYPERLEDGER_FABRIC
+      FrameworkVersion: 1.2
+      Name: HalalLogisticsBlockchain
+      VotingPolicy:
+        ApprovalThresholdPolicy:
+          ThresholdPercentage: 50 # 50% approval for decisions
+          ProposalDurationInHours: 24
+          ThresholdComparator: GREATER_THAN_OR_EQUAL_TO
+
+Outputs:
+  NetworkId:
+    Value: !Ref BlockchainNetwork
+    Description: Managed Blockchain Network ID for Halal Logistics.
