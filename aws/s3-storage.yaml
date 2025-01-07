@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: S3 Bucket for Halal Logistics Data Storage with Compliance Tagging
+
+Resources:
+  HalalS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: halal-logistics-data # Replace with unique name
+      Tags:
+        - Key: Purpose
+          Value: Halal Logistics
+        - Key: Compliance
+          Value: HalalCertified
+      VersioningConfiguration: # Optional, to enable versioning
+        Status: Enabled
+      LifecycleConfiguration: # Optional, for data lifecycle management
+        Rules:
+          - Id: ExpireOldObjects
+            Status: Enabled
+            ExpirationInDays: 365 # Expire objects older than 1 year
+
+Outputs:
+  S3BucketName:
+    Value: !Ref HalalS3Bucket
+    Description: The S3 bucket for Halal logistics storage.
