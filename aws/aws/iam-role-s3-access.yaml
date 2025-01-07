@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: IAM Role with Least Privilege for Halal Application
+
+Resources:
+  HalalAppRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: HalalLogisticsAppRole
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: 
+                - lambda.amazonaws.com
+                - ec2.amazonaws.com
+            Action: sts:AssumeRole
+      Policies:
+        - PolicyName: HalalLogisticsAccessPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - s3:GetObject
+                  - s3:PutObject
+                Resource: 
+                  - !Sub "arn:aws:s3:::halal-logistics-data/*" # Restrict to specific bucket
