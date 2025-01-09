@@ -1,0 +1,32 @@
+import pygraphviz as pgv
+
+# Initialize a directed graph
+graph = pgv.AGraph(strict=False, directed=True)
+
+# Add the root node
+graph.add_node("Halal Logistics", shape="ellipse", fontsize=20, color="blue", style="filled", fillcolor="lightblue")
+
+# Define categories and subcategories
+mindmap = {
+    "Vendor Management": ["Vendor Registration", "Halal Compliance Verification", "Vendor Dashboard"],
+    "Product Management": ["Add Product", "Verify Halal Certification", "Update Inventory"],
+    "Order Management": ["Order Placement", "Sharia-Compliant Transport", "Real-time Order Tracking"],
+    "Certification Management": ["Integrate Certification Authorities", "Verify Certificates"],
+    "Tracking System": ["End-to-End Product Traceability", "Blockchain Integration"],
+}
+
+# Add main categories and their subcategories
+for category, subcategories in mindmap.items():
+    graph.add_node(category, shape="box", style="rounded,filled", fillcolor="lightyellow", fontsize=16)
+    graph.add_edge("Halal Logistics", category)
+    
+    for subcategory in subcategories:
+        graph.add_node(subcategory, shape="plaintext", fontsize=14)
+        graph.add_edge(category, subcategory)
+
+# Customize the graph layout
+graph.layout(prog="dot")  # Use Graphviz's "dot" layout engine
+
+# Save the graph as an image
+graph.draw("halal-logistics-mindmap.png")
+print("Mind map saved as 'halal-logistics-mindmap.png'")
