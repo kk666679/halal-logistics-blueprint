@@ -1,4 +1,4 @@
-# AI Blockchain-Powered Halal Multivendor E-Commerce Platform Blueprint
+# Blockchain-Powered Halal Multivendor E-Commerce Platform Blueprint
 
 ## 1. Platform Objectives
 - **Halal Certification**: Ensure all products comply with Islamic principles, verified via blockchain.
